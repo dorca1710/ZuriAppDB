@@ -5,9 +5,9 @@
         <ion-toolbar color="primary">
           <ion-title class="ion-text-center-top">Menú</ion-title>
           <ion-buttons slot="end">
-            <ion-button @click="logout"  color="black" class="small-logout-button">
-        <ion-icon name="log-out">cerrar sesion</ion-icon>
-      </ion-button>
+            <ion-button   @click="logout"  color="success" expand="full" shape="round" class="ion-margin-top custom-button">
+      Cerrar Sesion
+    </ion-button>
             <ion-chip @click="navigateTo('Perfil')">
               <ion-label style="opacity: 1; color: black;">Hola {{ getUserName() }}</ion-label>
               <ion-avatar>
@@ -41,7 +41,7 @@
           </ion-button>
         </ion-card-content>
       </ion-card>
-
+      
       <!-- Botón más pequeño y a un lado -->
       
     </ion-content>
@@ -96,7 +96,7 @@ export default {
       try {
         const user = app.currentUser; 
         const mongodb = user.mongoClient('mongodb-atlas');
-        const collection = mongodb.db('ZuriAppDB').collection('UsuariosTurnos');
+        const collection = mongodb.db('ZuriAppDB').collection('Reemp');
     
         // Se Modifica la consulta para que solo devuelva los documentos que corresponden al usuario que ha iniciado sesión
         const data = await collection.find({ userID: user.id });

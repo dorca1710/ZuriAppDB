@@ -44,36 +44,12 @@
 
           <ion-item>
             <ion-label color="primary">Dirección: {{ getUserDireccion() }} </ion-label>
-            <ion-input v-if="!editingDireccion" v-model="direccion"></ion-input>
-            <ion-icon
-              v-if="!editingDireccion"
-              @click="startEditing('direccion')"
-              name="create-outline"
-              style="color: black;"
-            ></ion-icon>
-            <ion-icon
-              v-else
-              @click="saveChanges('direccion')"
-              name="checkmark-outline"
-              style="color: black;"
-            ></ion-icon>
+            
           </ion-item>
 
           <ion-item>
             <ion-label color="primary">Teléfono:     {{ getUserTelefono() }}</ion-label>
-            <ion-input v-if="!editingTelefono" v-model="telefono"></ion-input>
-            <ion-icon
-              v-if="!editingTelefono"
-              @click="startEditing('telefono')"
-              name="create-outline"
-              style="color: black;"
-            ></ion-icon>
-            <ion-icon
-              v-else
-              @click="saveChanges('telefono')"
-              name="checkmark-outline"
-              style="color: black;"
-            ></ion-icon>
+            
           </ion-item>
 
           <ion-item>
@@ -93,8 +69,7 @@
           </ion-item>
         </ion-list>
 
-        <!-- Botón para Guardar Cambios -->
-        <ion-button expand="full" @click="saveAvailability">Guardar Cambios</ion-button>
+       
       </ion-card>
     </ion-content>
   </ion-page>
@@ -181,7 +156,7 @@ export default {
         };
 
         // Actualiza el documento del usuario actual en la colección 'Usuario'
-        await collectionUsuario.updateOne(filter, updateData);
+        await collectionUsuario.findOneAndUpdate(filter, updateData);
 
         
         // Actualiza los valores locales después de guardar los cambios
@@ -255,24 +230,24 @@ export default {
           user.rut = userData.rut;
           user.email = userData.email;
           user.apellido = userData.apellido;
-          user.fechaNac = userData.fechaNac;
+          user.fecha_nac = userData.fecha_nac;
           user.direccion = userData.direccion;
           user.telefono = userData.telefono;
           user.ciudad = userData.ciudad;
           user.habilitado = userData.habilitado;
-          user.tipoCargo = userData.tipoCargo;
+          user.tipo_cargo = userData.tipo_cargo;
 
           // Store the user's information in localStorage for later use
           localStorage.setItem('userNombre', user.name);
           localStorage.setItem('userRut', user.rut);
           localStorage.setItem('userEmail', user.email);
           localStorage.setItem('userApellido', user.apellido);
-          localStorage.setItem('userFechaNac', user.fechaNac);
+          localStorage.setItem('userFechaNac', user.fecha_nac);
           localStorage.setItem('userDireccion', user.direccion);
           localStorage.setItem('userTelefono', user.telefono);
           localStorage.setItem('userCiudad', user.ciudad);
           localStorage.setItem('userHabilitado', user.habilitado);
-          localStorage.setItem('userTipoCargo', user.tipoCargo);
+          localStorage.setItem('userTipoCargo', user.tipo_cargo);
           
           // Actualiza los valores locales después de obtener datos del usuario
           userDireccion.value = user.direccion;

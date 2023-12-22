@@ -159,6 +159,12 @@ export default defineComponent({
 
     const saveAvailability = async () => {
       try {
+        const credentials = Realm.Credentials.emailPassword(email.value, password.value);
+        const user = await app.logIn(credentials);
+
+        const mongodb = user.mongoClient('mongodb-atlas');
+        const collection = mongodb.db('ZuriAppDB').collection('Reemp');
+
         const availabilityData = {
           rutsaliente: rutsaliente.value || '',
           nombresaliente: nombresaliente.value || '',
@@ -197,9 +203,7 @@ export default defineComponent({
         // Autenticar el usuario
         await app.logIn(Realm.Credentials.emailPassword(email.value, password.value));
 
-        // Guardar información
-        const mongodb = app.currentUser.mongoClient('mongodb-atlas');
-        const collection = mongodb.db('ZuriAppDB').collection('UsuariosTurnos');
+        
 
         await collection.insertMany([
           {

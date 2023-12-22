@@ -86,7 +86,7 @@ export default {
     const realmConfig = {
       sync: {
         user: app.currentUser,
-        partitionValue: app.currentUser.id,
+        partitionValue: app.currentUser,
         fullSynchronization: true,
       },
     };

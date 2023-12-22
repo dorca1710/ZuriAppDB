@@ -48,7 +48,7 @@
                   </ion-item>
                   <ion-item>
                     <ion-label position="stacked" color="primary">Fecha de Nacimiento</ion-label>
-                    <ion-input v-model="fechaNac" type="date" autocomplete="new_password"></ion-input>
+                    <ion-input v-model="fechanac" type="date" autocomplete="new_password"></ion-input>
                   </ion-item>
                   <ion-item>
                     <ion-label position="stacked" color="primary">Dirección</ion-label>
@@ -68,7 +68,7 @@
                   </ion-item>
                   <ion-item>
                     <ion-label position="stacked" color="primary">Tipo de Cargo</ion-label>
-                    <ion-input v-model="tipoCargo" type="text" autocomplete="new_password"></ion-input>
+                    <ion-input v-model="tipocargo" type="text" autocomplete="new_password"></ion-input>
                   </ion-item>
                 </ion-list>
                 <div style="padding-top: 6px;">
@@ -105,12 +105,12 @@ export default {
     const nombre = ref("");
     const apellido = ref("");
     const rut = ref("");
-    const fechaNac = ref("");
+    const fechanac = ref("");
     const direccion = ref("");
     const telefono = ref("");
     const ciudad = ref("");
     const habilitado = ref("");
-    const tipoCargo = ref("");
+    const tipocargo = ref("");
     const error = ref("");
     const eyeIcon = ref(eye);
     const passwordText = ref('password');
@@ -134,12 +134,12 @@ export default {
           !nombre.value ||
           !apellido.value ||
           !rut.value ||
-          !fechaNac.value ||
+          !fechanac.value ||
           !direccion.value ||
           !telefono.value ||
           !ciudad.value ||
           !habilitado.value ||
-          !tipoCargo.value ||
+          !tipocargo.value ||
           !repeatPassword.value ||
           password.value !== repeatPassword.value
         ) {
@@ -160,20 +160,20 @@ export default {
         const mongodb = app.currentUser.mongoClient("mongodb-atlas");
         const collection = mongodb.db("ZuriAppDB").collection("Usuario");
 
-        // Utiliza insertMany en lugar de insert y pasa un arreglo con un solo documento
+      
         await collection.insertMany([{
-          userID: app.currentUser.id,
+          userID: app.currentUser,
           email: email.value,
           password: password.value,
           nombre: nombre.value,
           apellido: apellido.value,
           rut: rut.value,
-          fechaNac: fechaNac.value,
+          fechanac: fechanac.value,
           direccion: direccion.value,
           telefono: telefono.value,
           ciudad: ciudad.value,
           habilitado: habilitado.value,
-          tipoCargo: tipoCargo.value,
+          tipocargo: tipocargo.value,
         }]);
 
         // Redirigir solo después de crear el registro
@@ -190,12 +190,12 @@ export default {
       nombre,
       apellido,
       rut,
-      fechaNac,
+      fechanac,
       direccion,
       telefono,
       ciudad,
       habilitado,
-      tipoCargo,
+      tipocargo,
       eye: eyeIcon,
       passwordType,
       passwordText,
@@ -208,5 +208,5 @@ export default {
 </script>
 
 <style>
-/* ... (estilos restantes) */
+
 </style>

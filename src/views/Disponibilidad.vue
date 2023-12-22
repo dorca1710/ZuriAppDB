@@ -166,7 +166,7 @@ export default defineComponent({
     };
 
     // Actualiza el documento del usuario actual en la colección 'Usuario'
-    await collectionUsuario.updateOne(filter, updateData);
+    await collectionUsuario.findOneAndUpdate(filter, updateData);
 
     // Mensaje de éxito
     alert('¡Fechas disponibles guardadas exitosamente en la colección Usuario!');
@@ -222,16 +222,11 @@ export default defineComponent({
       return localStorage.getItem('userTipoCargo') || 'Usuario';
     };
 
-    const blockBackButton = () => {
-      window.history.pushState(null, document.title, window.location.href);
-      window.addEventListener('popstate', function (event) {
-        window.history.pushState(null, document.title, window.location.href);
-      });
-    };
+   
 
     onMounted(() => {
       fetchUserData();
-      blockBackButton(); 
+      
     });
 
     return {
